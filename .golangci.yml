@@ -1,0 +1,47 @@
+run:
+  concurrency: 4
+  deadline: 5m
+  issues-exit-code: 1
+  tests: true
+  skip-files: []
+linters-settings:
+  revive:
+    set_exit_status: true
+    auto-fix: true
+  govet:
+    check-shadowing: true
+  gocyclo:
+    min-complexity: 12.0
+  maligned:
+    suggest-new: true
+  goconst:
+    min-len: 3.0
+    min-occurrences: 3.0
+  misspell:
+    locale: "UK"
+    ignore-words:
+     - listend
+     - analyses
+     - cancelling
+     - color
+     - colors
+  errcheck:
+    ignore: fmt:.*,github.com/spf13/cobra:MarkFlagRequired
+linters:
+  enable:
+    - vet
+    - revive
+    - gofmt
+    - deadcode
+    - varcheck
+    - structcheck
+    - misspell
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+issues:
+  exclude-use-default: false
+  max-per-linter: 0
+  max-same-issues: 0
+  exclude: []

@@ -1,0 +1,6 @@
+#Tests
+TEST=Test Field
+OPENAI_API_TYPE="azure"
+OPENAI_API_KEY="<somkey>"
+OPENAI_API_HOST="https://<azureopenai>.openai.azure.com/"
+AZURE_OPENAI_ENGINE="<azuredeployment>"
