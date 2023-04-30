@@ -12,18 +12,19 @@ import (
 
 // chatCmd represents the chat command
 var chatCmd = &cobra.Command{
-	Use:   "chat",
-	Short: "string to ask gpt",
-	Long: `a string that contains the request for gpt:
+	Use:   "chat <prompt>",
+	Short: "chat <prompt>",
+	Long: `a prompt you ask gpt for. Typical use of GPT model:
 
-gogpt chat "what's the capital of France?"`,
+gogpt chat "what's the capital of France?",
+gogpt chat "fizz buzz in bash"`,
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.SetVerbose(cmd)
 		log := logger.GetInstance()
 		completion := gpt.NewCompletionService(log)
-		err := completion.GetChatCompletion(args[0])
+		err := completion.GetChatCompletion(args[0], "chat")
 		if err != nil {
-			log.Errorf("Unable ask gpt: %v", err)
+			log.Errorf("Unable ask endpoint: %v", err)
 		}
 	},
 }

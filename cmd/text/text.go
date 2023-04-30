@@ -23,7 +23,7 @@ gogpt text "what's the capital of France?"`,
 		completion := gpt.NewCompletionService(log)
 		err := completion.GetCompletion(args[0])
 		if err != nil {
-			log.Errorf("Unable ask gpt: %v", err)
+			log.Errorf("Unable ask endpoint: %v", err)
 		}
 	},
 }

@@ -4,6 +4,8 @@ package cmd
 import (
 	"fmt"
 	"gogpt/cmd/chat"
+	"gogpt/cmd/code"
+	"gogpt/cmd/model"
 	"gogpt/cmd/text"
 	"gogpt/internal/logger"
 	"os"
@@ -22,12 +24,12 @@ var (
 
 
 
-	██████╗  ██████╗  ██████╗ ██████╗ ████████╗██████╗
-	██╔════╝ ██╔═══██╗██╔════╝ ██╔══██╗╚══██╔══╝╚════██╗
-	██║  ███╗██║   ██║██║  ███╗██████╔╝   ██║    █████╔╝
-	██║   ██║██║   ██║██║   ██║██╔═══╝    ██║   ██╔═══╝
-	╚██████╔╝╚██████╔╝╚██████╔╝██║        ██║   ███████╗
-		╚═════╝  ╚═════╝  ╚═════╝ ╚═╝        ╚═╝   ╚══════╝
+	██████╗  ██████╗  ██████╗ ██████╗ ████████╗
+	██╔════╝ ██╔═══██╗██╔════╝ ██╔══██╗╚══██╔══╝
+	██║  ███╗██║   ██║██║  ███╗██████╔╝   ██║
+	██║   ██║██║   ██║██║   ██║██╔═══╝    ██║
+	╚██████╔╝╚██████╔╝╚██████╔╝██║        ██║
+		╚═════╝  ╚═════╝  ╚═════╝ ╚═╝        ╚═╝
 												`,
 	}
 )
@@ -55,4 +57,6 @@ func init() {
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "set logging level to verbose")
 	rootCmd.AddCommand(chat.NewCmdChatRun())
 	rootCmd.AddCommand(text.NewCmdTextRun())
+	rootCmd.AddCommand(code.NewCmdCodeRun())
+	rootCmd.AddCommand(model.NewCmdModelRun())
 }

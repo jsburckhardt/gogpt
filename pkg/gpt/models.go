@@ -1,6 +1,9 @@
 package gpt
 
 import (
+	"fmt"
+	"gogpt/internal/gogptconfig"
+
 	openai "github.com/sashabaranov/go-openai"
 )
 
@@ -22,4 +25,16 @@ var AllowedModels = []string{
 	openai.GPT4,
 	openai.GPT40314,
 	openai.GPT432K,
+}
+
+// get model from string in OPENAI_API_MODEL config
+func getModel() (string, error) {
+	modelName := gogptconfig.GetConfig().GetString("OPENAI_API_MODEL")
+	for _, model := range AllowedModels {
+		if model == modelName {
+			return model, nil
+		}
+	}
+
+	return "", fmt.Errorf("invalid model name: %s", modelName)
 }

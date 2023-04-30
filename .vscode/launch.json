@@ -5,12 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ASK",
+            "name": "chat",
             "type": "go",
             "request": "launch",
             "mode": "debug",
             "program": "main.go",
             "args": ["chat", "commom logging levels, for example 1 is info","--verbose"],
+            // "envFile": "${workspaceFolder}/.env",
+        },
+        {
+            "name": "code",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "main.go",
+            "args": ["code", "commom logging levels, for example 1 is info","--verbose"],
+            // "envFile": "${workspaceFolder}/.env",
+        },
+        {
+            "name": "list models",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "main.go",
+            "args": ["model", "--list"],
             // "envFile": "${workspaceFolder}/.env",
         }
     ]

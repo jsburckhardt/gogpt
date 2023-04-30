@@ -79,7 +79,7 @@ func GetConfig() (config *Config) {
 		viper.AutomaticEnv()
 
 		if exPath != "" {
-			log.Infof("gogpt config path: %s", exPath)
+			log.Debugf("gogpt config path: %s", exPath)
 			viper.AddConfigPath(exPath)
 		}
 
