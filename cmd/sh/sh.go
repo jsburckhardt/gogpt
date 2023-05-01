@@ -1,6 +1,4 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
+// Package sh : provides sh command
 package sh
 
 import (
@@ -28,6 +26,7 @@ gogpt sh "how to search all files in bash for a filename?"`,
 	},
 }
 
+// NewCmdShRun returns the sh command
 func NewCmdShRun() *cobra.Command {
 	return shCmd
 }

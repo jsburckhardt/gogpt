@@ -61,12 +61,6 @@ node_modules/
 systemdata/
 
 # ignore app if make file creates binary
-app
-deploy/pi/kubeconfig.yaml
-deploy/minir/kubeconfig.yaml
-pkg/moas/test.jpg
-deploy/pi/kubeconfig-alt.yaml
-lastmessage.json
+gogpt-*
 tmp/
-workspace/
 test.log

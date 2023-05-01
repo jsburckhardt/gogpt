@@ -2,7 +2,7 @@ GIT_VERSION = $(shell git rev-list -1 HEAD)
 ifdef RELEASE
 	SAMPLE_VERSION := $(RELEASE)
 else
-	SAMPLE_VERSION := edge
+	SAMPLE_VERSION := local
 endif
 LDFLAGS:="-X main.commit=$(GIT_VERSION) -X main.version=$(SAMPLE_VERSION)"
 
@@ -19,6 +19,8 @@ fmt:
 build: conf
 	GOOS=linux GOARCH=amd64 go build -ldflags $(LDFLAGS) -o gogpt-linux-amd64 -buildvcs=false
 	GOOS=linux GOARCH=arm64 go build -ldflags $(LDFLAGS) -o gogpt-linux-arm64 -buildvcs=false
+	GOOS=darwin GOARCH=amd64 go build -ldflags $(LDFLAGS) -o gogpt-darwin-amd64 -buildvcs=false
+	GOOS=windows GOARCH=amd64 go build -ldflags $(LDFLAGS) -o gogpt-windows-amd64.exe -buildvcs=false
 
 conf:
 ifeq (,$(wildcard gogpt.conf))

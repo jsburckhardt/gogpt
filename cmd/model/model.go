@@ -1,3 +1,4 @@
+// Package model : provides model command
 package model
 
 import (
@@ -34,6 +35,7 @@ func init() {
 	modelCmd.Flags().BoolP("list", "l", false, "List available model")
 }
 
+// NewCmdModelRun returns the model command
 func NewCmdModelRun() *cobra.Command {
 	return modelCmd
 }

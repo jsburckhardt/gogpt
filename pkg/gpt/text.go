@@ -8,6 +8,7 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
+// GetCompletion returns the completion
 func (s *Service) GetCompletion(prompt string) error {
 	client := newClient()
 	model, err := getModel()

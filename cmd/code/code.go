@@ -1,6 +1,4 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
+// Package code : provides code command
 package code
 
 import (
@@ -28,6 +26,7 @@ gogpt code "how to search all files in bash for a filename?"`,
 	},
 }
 
+// NewCmdCodeRun returns the code command
 func NewCmdCodeRun() *cobra.Command {
 	return codeCmd
 }

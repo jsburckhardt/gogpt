@@ -5,7 +5,7 @@ import (
 	"gogpt/pkg/adapter"
 )
 
-// create a map of single word against a paragraph
+// ListModels prints the list of available models
 func ListModels(log *adapter.Logger) error {
 	client := newClient()
 	listModels, err := client.ListModels(context.Background())

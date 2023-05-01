@@ -1,6 +1,4 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
+// Package text provides text command
 package text
 
 import (
@@ -28,6 +26,7 @@ gogpt text "what's the capital of France?"`,
 	},
 }
 
+// NewCmdTextRun returns the text command
 func NewCmdTextRun() *cobra.Command {
 	return textCmd
 }

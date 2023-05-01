@@ -12,7 +12,7 @@ import (
 // Scripts is a wrapper around the embedded scripts
 var Scripts embed.FS
 
-// home directory. (.gogpt/scripts)
+// Init home directory
 func Init() error {
 	homedir, err := Homedir()
 	if err != nil {

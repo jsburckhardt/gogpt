@@ -1,6 +1,4 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
+// Package chat : provides chat command
 package chat
 
 import (
@@ -18,17 +16,21 @@ var chatCmd = &cobra.Command{
 
 gogpt chat "what's the capital of France?",
 gogpt chat "fizz buzz in bash"`,
-	Run: func(cmd *cobra.Command, args []string) {
+	Args: cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
 		logger.SetVerbose(cmd)
 		log := logger.GetInstance()
 		completion := gpt.NewCompletionService(log)
 		err := completion.GetChatCompletion(args[0], "chat")
 		if err != nil {
 			log.Errorf("Unable ask endpoint: %v", err)
+			return err
 		}
+		return nil
 	},
 }
 
+// NewCmdChatRun returns the chat command
 func NewCmdChatRun() *cobra.Command {
 	return chatCmd
 }

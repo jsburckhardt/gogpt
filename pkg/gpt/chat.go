@@ -1,3 +1,4 @@
+// Package gpt provides chat command
 package gpt
 
 import (
@@ -8,6 +9,7 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
+// GetChatCompletion returns the chat completion
 func (s *Service) GetChatCompletion(prompt string, system string) error {
 	client := newClient()
 	model, err := getModel()

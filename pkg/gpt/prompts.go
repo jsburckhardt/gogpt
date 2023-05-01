@@ -17,7 +17,8 @@ Credits: @demux79 @wunderwuzzi23 @yolo-ai-cmdbot @TheR1D1 @OpenAI @gpt3bot
 */
 
 const (
-	SHELL_PROMPT = `Act as a natural language to %s command translation engine on %s.
+	// ShellPrompt is the prompt for shell commands
+	ShellPrompt = `Act as a natural language to %s command translation engine on %s.
 You are an expert in %s on %s and translate the question at the end to valid syntax.
 
 Follow these rules:
@@ -49,7 +50,8 @@ You must always follow them. No exceptions.
 
 Request: `
 
-	CODE_PROMPT = `Act as a natural language to code translation engine.
+	// CodePrompt is the prompt for code
+	CodePrompt = `Act as a natural language to code translation engine.
 
 Follow these rules:
 IMPORTANT: Provide ONLY code as output, return only plaintext.
@@ -67,6 +69,7 @@ You must always follow them. No exceptions.
 Request: `
 )
 
+// Shell creates a prompt for shell commands
 func Shell(question string) string {
 	osName := func() string {
 		operatingSystems := map[string]string{
@@ -83,7 +86,7 @@ func Shell(question string) string {
 		question += "?"
 	}
 
-	return fmt.Sprintf(SHELL_PROMPT, shell, osName, shell, osName, shell) + question
+	return fmt.Sprintf(ShellPrompt, shell, osName, shell, osName, shell) + question
 }
 
 func getLinuxDistro() string {
@@ -99,10 +102,11 @@ func getLinuxDistro() string {
 	return "Unknown"
 }
 
+// Code creates a prompt for code
 func Code(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
 		question += "?"
 	}
-	return CODE_PROMPT + question
+	return CodePrompt + question
 }

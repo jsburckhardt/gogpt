@@ -7,6 +7,7 @@ import (
 	openai "github.com/sashabaranov/go-openai"
 )
 
+// AllowedModels is a list of allowed models
 var AllowedModels = []string{
 	openai.GPT3Ada,
 	openai.GPT3Babbage,
