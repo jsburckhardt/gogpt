@@ -6,6 +6,7 @@ import (
 	"gogpt/cmd/chat"
 	"gogpt/cmd/code"
 	"gogpt/cmd/model"
+	"gogpt/cmd/sh"
 	"gogpt/cmd/text"
 	"gogpt/internal/logger"
 	"os"
@@ -59,4 +60,5 @@ func init() {
 	rootCmd.AddCommand(text.NewCmdTextRun())
 	rootCmd.AddCommand(code.NewCmdCodeRun())
 	rootCmd.AddCommand(model.NewCmdModelRun())
+	rootCmd.AddCommand(sh.NewCmdShRun())
 }

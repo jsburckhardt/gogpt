@@ -9,21 +9,23 @@ import (
 )
 
 func (s *Service) GetChatCompletion(prompt string, system string) error {
-	assistantInstruction := getAssistantInstructions(system)
 	client := newClient()
 	model, err := getModel()
 	if err != nil {
 		return err
 	}
+	switch system {
+	case "sh":
+		prompt = Shell(prompt)
+	case "code":
+		prompt = Code(prompt)
+	}
+	prompt = Shell(prompt)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
 			Model: model,
 			Messages: []openai.ChatCompletionMessage{
-				{
-					Role:    openai.ChatMessageRoleSystem,
-					Content: assistantInstruction,
-				},
 				{
 					Role:    openai.ChatMessageRoleUser,
 					Content: prompt,
@@ -37,6 +39,12 @@ func (s *Service) GetChatCompletion(prompt string, system string) error {
 	}
 
 	source := resp.Choices[0].Message.Content
+	if system == "sh" {
+		result := source
+		fmt.Println(result)
+		return nil
+	}
+
 	result := markdown.Render(source, 80, 6)
 	fmt.Println(string(result))
 	return nil
