@@ -29,7 +29,7 @@ jobs:
       - name: Run tests
         run: |
           ls -la
-          devcontainer build --workspace-folder .
+          devcontainer up --workspace-folder .
           devcontainer exec --workspace-folder . bash -c "make lint"
           devcontainer exec --workspace-folder . bash -c "make test"
 
@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_AUTHOR_NAME: semantic-bot
-          GIT_AUTHOR_EMAIL: semantic-bot@noeamil.com
+          GIT_AUTHOR_EMAIL: semantic-bot@noemail.com
         run: |
           npm install @semantic-release/exec
           npm install @semantic-release/github
