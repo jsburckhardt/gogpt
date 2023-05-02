@@ -4,6 +4,8 @@ package sh
 import (
 	"gogpt/internal/logger"
 	"gogpt/pkg/gpt"
+	"io/ioutil"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -19,9 +21,35 @@ gogpt sh "how to search all files in bash for a filename?"`,
 		logger.SetVerbose(cmd)
 		log := logger.GetInstance()
 		completion := gpt.NewCompletionService(log)
-		err := completion.GetChatCompletion(args[0], "sh")
+
+		// Check if input is provided via command line arguments
+		if len(args) > 0 {
+			err := completion.GetChatCompletion(args[0], "sh")
+			if err != nil {
+				log.Errorf("Unable to ask endpoint: %v", err)
+			}
+			return
+		}
+
+		// Read from stdin
+		input, err := os.Stdin.Stat()
 		if err != nil {
-			log.Errorf("Unable ask endpoint: %v", err)
+			log.Errorf("Unable to read from stdin: %v", err)
+			return
+		}
+		if input.Mode()&os.ModeCharDevice != 0 {
+			log.Errorf("No input provided")
+			return
+		}
+		bytes, err := ioutil.ReadAll(os.Stdin)
+		if err != nil {
+			log.Errorf("Unable to read from stdin: %v", err)
+			return
+		}
+		inputStr := string(bytes)
+		err = completion.GetChatCompletion(inputStr, "sh")
+		if err != nil {
+			log.Errorf("Unable to ask endpoint: %v", err)
 		}
 	},
 }

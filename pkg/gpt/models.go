@@ -1,7 +1,6 @@
 package gpt
 
 import (
-	"fmt"
 	"gogpt/internal/gogptconfig"
 
 	openai "github.com/sashabaranov/go-openai"
@@ -36,6 +35,7 @@ func getModel() (string, error) {
 			return model, nil
 		}
 	}
-
-	return "", fmt.Errorf("invalid model name: %s", modelName)
+	// TODO: remove line once pr is merged
+	return "openai.GPT3Dot5Turbo0301", nil
+	// return "", fmt.Errorf("invalid model name: %s", modelName)
 }
