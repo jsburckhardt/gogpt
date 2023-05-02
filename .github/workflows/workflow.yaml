@@ -11,27 +11,28 @@ on:
     - dev
 
 jobs:
-  Tests:
+  tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install devcontainer-cli
+        run: npm install -g devcontainer-cli
+
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.18
-
-      - name: lint
+      # build and start devcontainer. Capture the container ID and exec make lint and make test
+      - name: Run tests
         run: |
-          make lint
-
-      - name: test
-        run: |
-          make test-ci
+          devcontainer exec --workspace-folder . bash -c "make lint"
+          devcontainer exec --workspace-folder . bash -c "make test"
 
   release:
-    needs: Tests
+    needs: tests
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     steps:
