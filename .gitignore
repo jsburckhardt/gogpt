@@ -64,3 +64,6 @@ systemdata/
 gogpt-*
 tmp/
 test.log
+
+package.json
+package-lock.json

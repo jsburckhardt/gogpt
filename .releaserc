@@ -12,7 +12,7 @@
         [
             "@semantic-release/exec",
             {
-                "publishCmd": "./build/scripts/release.sh ${nextRelease.version}"
+                "publishCmd": "./build/release.sh ${nextRelease.version}"
             }
         ],
         "@semantic-release/release-notes-generator",
