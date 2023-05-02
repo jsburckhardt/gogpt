@@ -2,6 +2,7 @@ package gpt_test
 
 import (
 	"gogpt/pkg/gpt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -122,6 +123,8 @@ Request: How do I list all files in a directory?`,
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			// set environment variable SHELL to bash
+			_ = os.Setenv("SHELL", "bash")
 			got := gpt.Shell(tt.question)
 			assert.Equal(t, tt.want, got)
 		})
