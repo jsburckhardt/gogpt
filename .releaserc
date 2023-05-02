@@ -9,9 +9,41 @@
     ],
     "plugins": [
         "@semantic-release/commit-analyzer",
+        [
+            "@semantic-release/exec",
+            {
+                "publishCmd": "./build/scripts/release.sh ${nextRelease.version}"
+            }
+        ],
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         "@semantic-release/git",
-        "@semantic-release/github"
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    {
+                        "path": "gogpt-linux-amd64",
+                        "label": "gogpt-linux-amd64"
+                    },
+                    {
+                        "path": "gogpt-linux-arm64",
+                        "label": "gogpt-linux-arm64"
+                    },
+                    {
+                        "path": "gogpt-darwin-amd64",
+                        "label": "gogpt-darwin-amd64"
+                    },
+                    {
+                        "path": "gogpt-windows-amd64.exe",
+                        "label": "gogpt-windows-amd64"
+                    },
+                    {
+                        "path": "build/scripts/install.sh",
+                        "label": "Linux Installer"
+                    }
+                ]
+            }
+        ]
     ]
 }

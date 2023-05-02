@@ -24,7 +24,7 @@ build: conf
 
 conf:
 ifeq (,$(wildcard gogpt.conf))
-	cp ./gogpt.conf.gogpt ./gogpt.conf
+	cp ./gogpt.conf.sample ./gogpt.conf
 endif
 
 test-ci: conf
