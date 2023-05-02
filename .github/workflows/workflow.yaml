@@ -12,7 +12,6 @@ on:
 
 jobs:
   Tests:
-    needs: BuildDevContainer
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,6 +31,7 @@ jobs:
           make test-ci
 
   release:
+    needs: Tests
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     steps:

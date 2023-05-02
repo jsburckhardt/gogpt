@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 GOGPT_VERSION="${VERSION:-"latest"}"
-GITHUB_API_REPO_URL="https://api.github.com/repos/CycloneDX/cyclonedx-cli/releases"
-URL_RELEASES="https://github.com/CycloneDX/cyclonedx-cli/releases"
+GITHUB_API_REPO_URL="https://api.github.com/repos/jsburckhardt/gogpt/releases"
+URL_RELEASES="https://github.com/jsburckhardt/gogpt/releases"
 
 set -e
 
@@ -69,14 +69,14 @@ if [ "${GOGPT_VERSION}" = "latest" ]; then GOGPT_VERSION=$(curl -sL ${GITHUB_API
 validate_version_exists GOGPT_VERSION "${GOGPT_VERSION}"
 
 # download and install binary
-GOGPT_FILENAME=cyclonedx-${OS}-${ARCH}
+GOGPT_FILENAME=gogpt-${OS}-${ARCH}
 echo "Downloading ${GOGPT_FILENAME}..."
 
 url="${URL_RELEASES}/download/${GOGPT_VERSION}/${GOGPT_FILENAME}"
 echo "Downloading ${url}..."
 curl -sSL $url -o "${GOGPT_FILENAME}"
 chmod +x "${GOGPT_FILENAME}"
-mv "${GOGPT_FILENAME}" /usr/local/bin/cyclonedx
+mv "${GOGPT_FILENAME}" /usr/local/bin/gogpt
 
 
 # Clean up
