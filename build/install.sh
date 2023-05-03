@@ -10,10 +10,10 @@ set -e
 rm -rf /var/lib/apt/lists/*
 
 ARCH="$(uname -m)"
-# if ARCH is not arm64, x86_64, armv6, i386, s390x exit 1
+# if ARCH is not arm64, x86_64, armv6, i386, s390x, x64 exit 1
 case ${ARCH} in
 arm64) ARCH="arm64" ;;
-x86_64) ARCH="x64" ;;
+x86_64) ARCH="amd64" ;;
 *)
 	echo "(!) Architecture ${ARCH} unsupported"
 	exit 1
@@ -47,6 +47,16 @@ check_packages() {
 	fi
 }
 
+# Get all version and pick the latest
+get_latest_release() {
+  # Retrieve the tags from the GitHub API
+  response=$(curl --silent ${GITHUB_API_REPO_URL})
+  # Parse the JSON response and extract the latest tag
+  latest_tag=$(echo "$response" | jq -r '.[0].tag_name')
+  # Return the latest tag
+  echo "$latest_tag"
+}
+
 # Figure out correct version of a three part version number is not passed
 validate_version_exists() {
 	local variable_name=$1
@@ -66,6 +76,11 @@ check_packages curl tar jq ca-certificates
 
 # make sure version is available
 if [ "${GOGPT_VERSION}" = "latest" ]; then GOGPT_VERSION=$(curl -sL ${GITHUB_API_REPO_URL}/latest | jq -r ".tag_name"); fi
+# NO LATEST VERSION
+if [ "${GOGPT_VERSION}" = "null" ]; then
+	GOGPT_VERSION=$(get_latest_release)
+fi
+
 validate_version_exists GOGPT_VERSION "${GOGPT_VERSION}"
 
 # download and install binary
@@ -77,7 +92,6 @@ echo "Downloading ${url}..."
 curl -sSL $url -o "${GOGPT_FILENAME}"
 chmod +x "${GOGPT_FILENAME}"
 mv "${GOGPT_FILENAME}" /usr/local/bin/gogpt
-
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
