@@ -44,7 +44,7 @@
                         "label": "gogpt-windows-amd64"
                     },
                     {
-                        "path": "build/scripts/install.sh",
+                        "path": "build/install.sh",
                         "label": "Linux Installer"
                     }
                 ]
