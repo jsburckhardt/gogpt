@@ -97,10 +97,15 @@ There are no exceptions to these rules.
 You must always follow them. No exceptions.
 
 Request: `
+
+	// DefaultPrompt is the prompt for code
+	DefaultPrompt = `Act as a friendly assistant
+
+Request: `
 )
 
 // Shell creates a prompt for shell commands
-func Shell(question string) string {
+func GenerateShellPrompt(question string) string {
 	osName := func() string {
 		operatingSystems := map[string]string{
 			"linux":   "Linux/" + getLinuxDistro(),
@@ -133,7 +138,7 @@ func getLinuxDistro() string {
 }
 
 // Code creates a prompt for code
-func Code(question string) string {
+func GenerateCodePrompt(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
 		question += "?"
@@ -141,10 +146,18 @@ func Code(question string) string {
 	return CodePrompt + question
 }
 
-func Chat(question string) string {
+func GenerateChatPrompt(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
 		question += "?"
 	}
 	return ChatPrompt + question
+}
+
+func GenerateDefaultPrompt(question string) string {
+	question = strings.TrimSpace(question)
+	if !strings.HasSuffix(question, "?") {
+		question += "?"
+	}
+	return DefaultPrompt + question
 }
