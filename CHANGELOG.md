@@ -1,3 +1,11 @@
+# [1.0.0-beta.2](https://github.com/jsburckhardt/gogpt/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-05-03)
+
+
+### Bug Fixes
+
+* **ci:** add permissions build/release.sh ([d34c40e](https://github.com/jsburckhardt/gogpt/commit/d34c40eac2a3678699d8a42423a558e63920e50e))
+* **ci:** add permissions build/release.sh ([a5357ea](https://github.com/jsburckhardt/gogpt/commit/a5357eaf850855fccc092955bbd5bc7b196db6f1))
+
 # 1.0.0-beta.1 (2023-05-03)
 
 
