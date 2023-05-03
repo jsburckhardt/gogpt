@@ -1,3 +1,10 @@
+# [1.0.0-beta.4](https://github.com/jsburckhardt/gogpt/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-05-03)
+
+
+### Features
+
+* **install:** add installation script to release ([d6aa410](https://github.com/jsburckhardt/gogpt/commit/d6aa41009fecb6cd4e63ed7154b95189229da322))
+
 # [1.0.0-beta.3](https://github.com/jsburckhardt/gogpt/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-03)
 
 
