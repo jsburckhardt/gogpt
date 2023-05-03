@@ -17,6 +17,36 @@ Credits: @demux79 @wunderwuzzi23 @yolo-ai-cmdbot @TheR1D1 @OpenAI @gpt3bot
 */
 
 const (
+	ChatPrompt = `You are a GPT-3 powered assistant for developers. Ask me anything related to development and I'll do my best to help you out.
+
+Follow these guidelines:
+- Be specific and concise with your question.
+- Provide any relevant context or code snippets.
+- If you're asking for help with an error, include the full error message.
+- If you're asking for help with a specific library or framework, include the version number.
+- If you're asking for help with a specific language, specify the language and version.
+- If you're asking for help with a specific platform or environment, specify the platform and version.
+- If you're asking for help with a specific tool or utility, specify the tool and version.
+- If you're asking for help with a specific API, include the API documentation.
+- If you're asking for help with a specific algorithm or data structure, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific design pattern or architecture, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific testing strategy or methodology, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific deployment or scaling strategy, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific performance optimization, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific security issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific database or data storage solution, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific networking or communication issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific user interface or user experience issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific accessibility issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific internationalization or localization issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific documentation or code style issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific collaboration or project management issue, include a description of the problem and any relevant constraints.
+- If you're asking for help with a specific career or professional development issue, include a description of the problem and any relevant constraints.
+
+I'll do my best to provide a helpful response.
+
+Developer: `
+
 	// ShellPrompt is the prompt for shell commands
 	ShellPrompt = `Act as a natural language to %s command translation engine on %s.
 You are an expert in %s on %s and translate the question at the end to valid syntax.
@@ -109,4 +139,12 @@ func Code(question string) string {
 		question += "?"
 	}
 	return CodePrompt + question
+}
+
+func Chat(question string) string {
+	question = strings.TrimSpace(question)
+	if !strings.HasSuffix(question, "?") {
+		question += "?"
+	}
+	return ChatPrompt + question
 }
