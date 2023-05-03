@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jsburckhardt/gogpt/compare/v1.0.0...v1.1.0) (2023-05-03)
+
+
+### Features
+
+* **install:** run installation script without executing it as sudo ([55079f2](https://github.com/jsburckhardt/gogpt/commit/55079f2245f318f2a5f820530c0f54fbbf78264a))
+
 # 1.0.0 (2023-05-03)
 
 
