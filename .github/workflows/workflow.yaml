@@ -4,11 +4,9 @@ on:
     branches:
     - main
     - dev
-    - feat/*
   pull_request:
     branches:
     - main
-    - dev
 
 jobs:
   tests:
