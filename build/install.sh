@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+USE_SUDO="true"
 GOGPT_VERSION="${VERSION:-"latest"}"
 GITHUB_API_REPO_URL="https://api.github.com/repos/jsburckhardt/gogpt/releases"
 URL_RELEASES="https://github.com/jsburckhardt/gogpt/releases"
@@ -31,30 +32,36 @@ Darwin) OS="osx" ;;
 	;;
 esac
 
-if [ "$(id -u)" -ne 0 ]; then
-	echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
-	exit 1
-fi
+# runs the given command as root (detects if we are root already)
+runAsRoot() {
+	local CMD="$*"
+	if [ $EUID -ne 0 ]  && [ "$USE_SUDO" = "true" ]; then
+	# if [ $EUID -ne 0 -a $USE_SUDO = "true" ]; then
+		CMD="sudo $CMD"
+	fi
+	$CMD
+}
+
 
 # Checks if packages are installed and installs them if not
 check_packages() {
 	if ! dpkg -s "$@" >/dev/null 2>&1; then
 		if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
 			echo "Running apt-get update..."
-			apt-get update -y
+			runAsRoot apt-get update -y
 		fi
-		apt-get -y install --no-install-recommends "$@"
+		runAsRoot apt-get -y install --no-install-recommends "$@"
 	fi
 }
 
 # Get all version and pick the latest
 get_latest_release() {
-  # Retrieve the tags from the GitHub API
-  response=$(curl --silent ${GITHUB_API_REPO_URL})
-  # Parse the JSON response and extract the latest tag
-  latest_tag=$(echo "$response" | jq -r '.[0].tag_name')
-  # Return the latest tag
-  echo "$latest_tag"
+	# Retrieve the tags from the GitHub API
+	response=$(curl --silent ${GITHUB_API_REPO_URL})
+	# Parse the JSON response and extract the latest tag
+	latest_tag=$(echo "$response" | jq -r '.[0].tag_name')
+	# Return the latest tag
+	echo "$latest_tag"
 }
 
 # Figure out correct version of a three part version number is not passed
@@ -89,9 +96,9 @@ echo "Downloading ${GOGPT_FILENAME}..."
 
 url="${URL_RELEASES}/download/${GOGPT_VERSION}/${GOGPT_FILENAME}"
 echo "Downloading ${url}..."
-curl -sSL $url -o "${GOGPT_FILENAME}"
-chmod +x "${GOGPT_FILENAME}"
-mv "${GOGPT_FILENAME}" /usr/local/bin/gogpt
+curl -sSL "$url" -o "${GOGPT_FILENAME}"
+runAsRoot chmod +x "${GOGPT_FILENAME}"
+runAsRoot mv "${GOGPT_FILENAME}" /usr/local/bin/gogpt
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
