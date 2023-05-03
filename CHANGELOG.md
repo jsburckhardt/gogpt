@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/jsburckhardt/gogpt/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-03)
+
+
+### Bug Fixes
+
+* **ci:** remove package-lock.json and package.json from semantic release ([0a91b15](https://github.com/jsburckhardt/gogpt/commit/0a91b15a437049f58cfd4d7322c660094514cfa5))
+
 # [1.0.0-beta.2](https://github.com/jsburckhardt/gogpt/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-05-03)
 
 
