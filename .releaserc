@@ -17,7 +17,12 @@
         ],
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
-        "@semantic-release/git",
+        ["@semantic-release/git",
+            {
+                "assets": ["CHANGELOG.md", "!package.json", "!package-lock.json"],
+                "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
         [
             "@semantic-release/github",
             {
@@ -39,7 +44,7 @@
                         "label": "gogpt-windows-amd64"
                     },
                     {
-                        "path": "build/scripts/install.sh",
+                        "path": "build/install.sh",
                         "label": "Linux Installer"
                     }
                 ]

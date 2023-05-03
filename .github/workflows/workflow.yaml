@@ -4,11 +4,9 @@ on:
     branches:
     - main
     - dev
-    - feat/*
   pull_request:
     branches:
     - main
-    - dev
 
 jobs:
   tests:
@@ -37,6 +35,11 @@ jobs:
     needs: tests
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v3
       - name: Setup Go
