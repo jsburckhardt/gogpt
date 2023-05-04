@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/jsburckhardt/gogpt/compare/v1.1.0...v1.1.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **install:** runAsRoot cleanup steps ([e23cf8f](https://github.com/jsburckhardt/gogpt/commit/e23cf8f31ef458b7bb92e96914c9bc3fd21815a5))
+* **model:** update the model call to list using sdk ([c9b26d6](https://github.com/jsburckhardt/gogpt/commit/c9b26d6ee632b5db8a1dfcac69cd1203861e506e))
+* **prompts:** fix linting issues ([fdef967](https://github.com/jsburckhardt/gogpt/commit/fdef9677ab21648768df965776515d8e01f2ee71))
+
 # [1.1.0](https://github.com/jsburckhardt/gogpt/compare/v1.0.0...v1.1.0) (2023-05-03)
 
 
