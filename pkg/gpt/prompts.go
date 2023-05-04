@@ -17,6 +17,7 @@ Credits: @demux79 @wunderwuzzi23 @yolo-ai-cmdbot @TheR1D1 @OpenAI @gpt3bot
 */
 
 const (
+	// ChatPrompt is the general chatprompt for chat
 	ChatPrompt = `You are a GPT-3 powered assistant for developers. Ask me anything related to development and I'll do my best to help you out.
 
 Follow these guidelines:
@@ -104,7 +105,7 @@ Request: `
 Request: `
 )
 
-// Shell creates a prompt for shell commands
+// GenerateShellPrompt creates a prompt for shell commands
 func GenerateShellPrompt(question string) string {
 	osName := func() string {
 		operatingSystems := map[string]string{
@@ -137,7 +138,7 @@ func getLinuxDistro() string {
 	return "Unknown"
 }
 
-// Code creates a prompt for code
+// GenerateCodePrompt creates a prompt for code
 func GenerateCodePrompt(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
@@ -146,6 +147,7 @@ func GenerateCodePrompt(question string) string {
 	return CodePrompt + question
 }
 
+// GenerateChatPrompt creates a prompt for chat
 func GenerateChatPrompt(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
@@ -154,6 +156,7 @@ func GenerateChatPrompt(question string) string {
 	return ChatPrompt + question
 }
 
+// GenerateDefaultPrompt creates a prompt for chat
 func GenerateDefaultPrompt(question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
