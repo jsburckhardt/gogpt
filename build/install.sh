@@ -7,8 +7,19 @@ URL_RELEASES="https://github.com/jsburckhardt/gogpt/releases"
 
 set -e
 
+# runs the given command as root (detects if we are root already)
+runAsRoot() {
+	local CMD="$*"
+	if [ $EUID -ne 0 ]  && [ "$USE_SUDO" = "true" ]; then
+	# if [ $EUID -ne 0 -a $USE_SUDO = "true" ]; then
+		CMD="sudo $CMD"
+	fi
+	$CMD
+}
+
+
 # Clean up
-rm -rf /var/lib/apt/lists/*
+runAsRoot rm -rf /var/lib/apt/lists/*
 
 ARCH="$(uname -m)"
 # if ARCH is not arm64, x86_64, armv6, i386, s390x, x64 exit 1
@@ -31,17 +42,6 @@ Darwin) OS="osx" ;;
 	exit 1
 	;;
 esac
-
-# runs the given command as root (detects if we are root already)
-runAsRoot() {
-	local CMD="$*"
-	if [ $EUID -ne 0 ]  && [ "$USE_SUDO" = "true" ]; then
-	# if [ $EUID -ne 0 -a $USE_SUDO = "true" ]; then
-		CMD="sudo $CMD"
-	fi
-	$CMD
-}
-
 
 # Checks if packages are installed and installs them if not
 check_packages() {
@@ -101,6 +101,6 @@ runAsRoot chmod +x "${GOGPT_FILENAME}"
 runAsRoot mv "${GOGPT_FILENAME}" /usr/local/bin/gogpt
 
 # Clean up
-rm -rf /var/lib/apt/lists/*
+runAsRoot rm -rf /var/lib/apt/lists/*
 
 echo "Done!"

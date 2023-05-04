@@ -19,7 +19,7 @@ gogpt model --list`,
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.SetVerbose(cmd)
 		log := logger.GetInstance()
-		log.Debugf("model triggered")
+		log.Infof("model triggered. Select an option")
 
 		if list, _ := cmd.Flags().GetBool("list"); list {
 			err := gpt.ListModels(log)

@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/MichaelMure/go-term-markdown v0.1.4
-	github.com/sashabaranov/go-openai v1.9.0
+	github.com/sashabaranov/go-openai v1.9.2
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.5.0
 	github.com/spf13/viper v1.12.0

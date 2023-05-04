@@ -18,11 +18,14 @@ func (s *Service) GetChatCompletion(prompt string, system string) error {
 	}
 	switch system {
 	case "sh":
-		prompt = Shell(prompt)
+		prompt = GenerateShellPrompt(prompt)
 	case "code":
-		prompt = Code(prompt)
+		prompt = GenerateCodePrompt(prompt)
+	case "chat":
+		prompt = GenerateChatPrompt(prompt)
+	default:
+		prompt = GenerateDefaultPrompt(prompt)
 	}
-	prompt = Shell(prompt)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
@@ -47,7 +50,7 @@ func (s *Service) GetChatCompletion(prompt string, system string) error {
 		return nil
 	}
 
-	result := markdown.Render(source, 80, 6)
+	result := markdown.Render(source, 80, 0)
 	fmt.Println(string(result))
 	return nil
 }
