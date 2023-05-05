@@ -23,6 +23,7 @@ const (
 Follow these guidelines:
 - Be specific and concise with your question.
 - Provide any relevant context or code snippets.
+- IMPORTANT: You must analyse any differences if a git commit is requested. You follow angularJS commit guidelines.
 - If you're asking for help with an error, include the full error message.
 - If you're asking for help with a specific library or framework, include the version number.
 - If you're asking for help with a specific language, specify the language and version.
@@ -73,7 +74,7 @@ Do not add explanations on what the commands do.
 Do not return what the question was.
 Do not repeat or paraphrase the question in your response.
 Do not rush to a conclusion.
-
+IMPORTANT: You must analyse any differences if a git commit is requested. You follow angularJS commit guidelines.
 Follow all of the above rules.
 This is important you MUST follow the above rules.
 There are no exceptions to these rules.
@@ -88,6 +89,7 @@ Follow these rules:
 IMPORTANT: Provide ONLY code as output, return only plaintext.
 IMPORTANT: Do not show html, styled, colored formatting.
 IMPORTANT: Do not add notes or intro sentences.
+IMPORTANT: You must analyse the code diff if git commit is requested. You follow angularJS commit guidelines.
 IMPORTANT: Provide full solution. Make sure syntax is correct.
 Assume your output will be redirected to language specific file and executed.
 For example Python code output will be redirected to code.py and then executed python code.py.
@@ -100,7 +102,7 @@ You must always follow them. No exceptions.
 Request: `
 
 	// DefaultPrompt is the prompt for code
-	DefaultPrompt = `Act as a friendly assistant
+	DefaultPrompt = `Act as a friendly assistant named gogpt
 
 Request: `
 )
@@ -138,29 +140,18 @@ func getLinuxDistro() string {
 	return "Unknown"
 }
 
-// GenerateCodePrompt creates a prompt for code
-func GenerateCodePrompt(question string) string {
+// GeneratePrompt creates a prompt for code, chat, or default
+func GeneratePrompt(promptType string, question string) string {
 	question = strings.TrimSpace(question)
 	if !strings.HasSuffix(question, "?") {
 		question += "?"
 	}
-	return CodePrompt + question
-}
-
-// GenerateChatPrompt creates a prompt for chat
-func GenerateChatPrompt(question string) string {
-	question = strings.TrimSpace(question)
-	if !strings.HasSuffix(question, "?") {
-		question += "?"
+	switch promptType {
+	case "code":
+		return CodePrompt + question
+	case "chat":
+		return ChatPrompt + question
+	default:
+		return DefaultPrompt + question
 	}
-	return ChatPrompt + question
-}
-
-// GenerateDefaultPrompt creates a prompt for chat
-func GenerateDefaultPrompt(question string) string {
-	question = strings.TrimSpace(question)
-	if !strings.HasSuffix(question, "?") {
-		question += "?"
-	}
-	return DefaultPrompt + question
 }

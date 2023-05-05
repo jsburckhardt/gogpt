@@ -19,12 +19,8 @@ func (s *Service) GetChatCompletion(prompt string, system string) error {
 	switch system {
 	case "sh":
 		prompt = GenerateShellPrompt(prompt)
-	case "code":
-		prompt = GenerateCodePrompt(prompt)
-	case "chat":
-		prompt = GenerateChatPrompt(prompt)
 	default:
-		prompt = GenerateDefaultPrompt(prompt)
+		prompt = GeneratePrompt(system, prompt)
 	}
 	resp, err := client.CreateChatCompletion(
 		context.Background(),

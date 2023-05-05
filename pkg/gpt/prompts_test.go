@@ -41,7 +41,7 @@ Do not add explanations on what the commands do.
 Do not return what the question was.
 Do not repeat or paraphrase the question in your response.
 Do not rush to a conclusion.
-
+IMPORTANT: You must analyse any differences if a git commit is requested. You follow angularJS commit guidelines.
 Follow all of the above rules.
 This is important you MUST follow the above rules.
 There are no exceptions to these rules.
@@ -76,7 +76,7 @@ Do not add explanations on what the commands do.
 Do not return what the question was.
 Do not repeat or paraphrase the question in your response.
 Do not rush to a conclusion.
-
+IMPORTANT: You must analyse any differences if a git commit is requested. You follow angularJS commit guidelines.
 Follow all of the above rules.
 This is important you MUST follow the above rules.
 There are no exceptions to these rules.
@@ -111,7 +111,7 @@ Do not add explanations on what the commands do.
 Do not return what the question was.
 Do not repeat or paraphrase the question in your response.
 Do not rush to a conclusion.
-
+IMPORTANT: You must analyse any differences if a git commit is requested. You follow angularJS commit guidelines.
 Follow all of the above rules.
 This is important you MUST follow the above rules.
 There are no exceptions to these rules.
@@ -146,6 +146,7 @@ Follow these rules:
 IMPORTANT: Provide ONLY code as output, return only plaintext.
 IMPORTANT: Do not show html, styled, colored formatting.
 IMPORTANT: Do not add notes or intro sentences.
+IMPORTANT: You must analyse the code diff if git commit is requested. You follow angularJS commit guidelines.
 IMPORTANT: Provide full solution. Make sure syntax is correct.
 Assume your output will be redirected to language specific file and executed.
 For example Python code output will be redirected to code.py and then executed python code.py.
@@ -166,6 +167,7 @@ Follow these rules:
 IMPORTANT: Provide ONLY code as output, return only plaintext.
 IMPORTANT: Do not show html, styled, colored formatting.
 IMPORTANT: Do not add notes or intro sentences.
+IMPORTANT: You must analyse the code diff if git commit is requested. You follow angularJS commit guidelines.
 IMPORTANT: Provide full solution. Make sure syntax is correct.
 Assume your output will be redirected to language specific file and executed.
 For example Python code output will be redirected to code.py and then executed python code.py.
@@ -186,6 +188,7 @@ Follow these rules:
 IMPORTANT: Provide ONLY code as output, return only plaintext.
 IMPORTANT: Do not show html, styled, colored formatting.
 IMPORTANT: Do not add notes or intro sentences.
+IMPORTANT: You must analyse the code diff if git commit is requested. You follow angularJS commit guidelines.
 IMPORTANT: Provide full solution. Make sure syntax is correct.
 Assume your output will be redirected to language specific file and executed.
 For example Python code output will be redirected to code.py and then executed python code.py.
@@ -201,7 +204,7 @@ Request: How do I sort a list of integers in Python?`,
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := gpt.GenerateCodePrompt(tt.question)
+			got := gpt.GeneratePrompt("code", tt.question)
 			assert.Equal(t, tt.want, got)
 		})
 	}
