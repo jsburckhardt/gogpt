@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jsburckhardt/gogpt/compare/v1.1.1...v1.2.0) (2023-05-05)
+
+
+### Features
+
+* **cmd:** add option to read from stdin ([529bfb1](https://github.com/jsburckhardt/gogpt/commit/529bfb17ab909640b96a387d44b4c700c64b32bc))
+
 ## [1.1.1](https://github.com/jsburckhardt/gogpt/compare/v1.1.0...v1.1.1) (2023-05-04)
 
 
